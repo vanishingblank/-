@@ -170,11 +170,22 @@ class AlienInvasion:
             else:
                 self._fire_bullet()
 
+    def _bullet_update(self):
+        if self.stats.score > 1000:
+            self.settings.bullets_allowed = 9
+
     def _fire_bullet(self):
         #创建一颗子弹，并将其加入到编组bullets中
-        if len(self.bullets) < self.settings.bullets_allowed:
-            new_bullet = Bullet(self)
-            self.bullets.add(new_bullet)
+        if len(self.bullets) < self.settings.bullets_allowed  :
+
+            if self.stats.score <= 1000:
+                self.bullets.add(Bullet(self,offset=0))
+
+            else:
+                #三发模式
+                for offset in [-15,0,15]:
+                    self.bullets.add(Bullet(self, offset=offset))
+                    
 
     def _check_keyup_events(self,event):
         #响应松开

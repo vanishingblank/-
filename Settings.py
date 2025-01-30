@@ -40,6 +40,9 @@ class Settings:
         #记分
         self.alien_points = 50
 
+        #子弹数量还原
+        self.bullets_allowed = 3
+
     def increase_speed(self):
         #提高速度设置和外星人分数
         self.ship_speed *= self.speedup_scale
